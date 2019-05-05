@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/React_BindContent/bower_components/react/react.development.js"></script>
+    <script type="text/javascript" src="/React_BindContent/bower_components/react/react-dom.development.js"></script>
+    <script type="text/javascript" src="/React_BindContent/bower_components/babel/browser.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        class InputNode extends React.Component{
+            constructor(){
+                super();
+                this.state = {
+                    msg : ''
+                };
+            }
+            // change(e){
+            //     this.setState({
+            //         msg : e.target.value
+            //     });
+            // }
+            change(){
+                this.setState({
+                    msg : this.refs['Node1'].value
+                });
+            }
+            render(){
+                return (
+                    <div>
+                        <input type="text" onChange={this.change.bind(this)} ref="Node1"/>
+                        <div>{this.state.msg}</div>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<InputNode />, app);
+    </script>
+</body>
+</html>

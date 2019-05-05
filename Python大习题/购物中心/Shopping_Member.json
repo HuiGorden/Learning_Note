@@ -1,0 +1,40 @@
+{
+  "Allen": {
+    "password": "abc123",
+    "balance": 20169.0,
+    "history": [
+      "Purchased Civic on 2018/01/01 16:57:45",
+      "Purchased Camero on 2018/01/01 16:58:09",
+      "Purchased Fancy on 2018/01/01 16:59:06",
+      "Purchased Fancy on 2018/01/01 16:59:13",
+      "Purchased Fancy on 2018/01/01 16:59:15",
+      "Purchased Fancy on 2018/01/01 16:59:16",
+      "Purchased Fancy on 2018/01/01 16:59:17"
+    ]
+  },
+  "Tommy": {
+    "password": "Tommy567",
+    "balance": 13,
+    "history": []
+  },
+  "Kate": {
+    "password": "qks$ksl",
+    "balance": 101267,
+    "history": []
+  },
+  "Gorden": {
+    "password": "Gorden123",
+    "balance": 964785,
+    "history": []
+  },
+  "Richard": {
+    "password": "YYT",
+    "balance": 71234,
+    "history": []
+  },
+  "Snoopy": {
+    "password": "123456",
+    "balance": 187912,
+    "history": []
+  }
+}

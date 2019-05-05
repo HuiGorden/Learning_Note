@@ -1,0 +1,96 @@
+{
+  "Car": {
+    "Japan": {
+      "Honda": {
+        "Civic": {
+          "left": 0,
+          "price": 40000
+        }
+      },
+      "Toyota": {
+        "Camero": {
+          "left": 7,
+          "price": 37000
+        }
+      }
+    },
+    "German": {
+      "BMW": {
+        "Sedan": {
+          "320xDrive": {
+            "left": 0,
+            "price": 51000
+          },
+          "428xDrive": {
+            "left": 6,
+            "price": 87210
+          }
+        },
+        "SUV": {
+          "X1": {
+            "left": 18,
+            "price": 1531000
+          },
+          "X6": {
+            "left": 0,
+            "price": 72317
+          }
+        }
+      },
+      "Audi": {
+        "Q3": {
+          "left": 0,
+          "price": 55423
+        },
+        "Q5": {
+          "left": 0,
+          "price": 51000
+        }
+      }
+    }
+  },
+  "Food": {
+    "Fruit": {
+      "Apple": {
+        "left": 184,
+        "price": 15
+      },
+      "Pineapple": {
+        "left": 236,
+        "price": 8
+      }
+    },
+    "Meat": {
+      "Beef": {
+        "left": 190,
+        "price": 35
+      },
+      "Chicken": {
+        "left": 167,
+        "price": 23
+      }
+    }
+  },
+  "Shoes": {
+    "Nike": {
+      "Jordan": {
+        "left": 13,
+        "price": 50
+      },
+      "YaoMing": {
+        "left": 152,
+        "price": 36
+      }
+    },
+    "Converse": {
+      "Fusion": {
+        "left": 73,
+        "price": 48
+      },
+      "Fancy": {
+        "left": 57,
+        "price": 25
+      }
+    }
+  }
+}

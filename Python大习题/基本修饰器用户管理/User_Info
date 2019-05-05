@@ -1,0 +1,22 @@
+{
+  "Allen": {
+    "Password": "82abc12",
+    "SuperUser": false,
+    "Level": 2
+  },
+  "Hui": {
+    "Password": "123",
+    "SuperUser": true,
+    "Level": 3
+  },
+  "John": {
+    "password": "LV7vz871Cv",
+    "SuperUser": false,
+    "Level": 1
+  },
+  "JohnWall": {
+    "password": "2DU8pNU",
+    "SuperUser": false,
+    "Level": 1
+  }
+}
