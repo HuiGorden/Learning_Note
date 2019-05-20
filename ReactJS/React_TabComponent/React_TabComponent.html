@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ReactTabComponent</title>
+    <script type="text/javascript" src="bower_components/react/react.development.js"></script>
+    <script type="text/javascript" src="bower_components/react/react-dom.development.js"></script>
+    <script type="text/javascript" src="bower_components/babel/browser.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .outBox {
+        border: 1px solid black;
+        transform: translate(-50%, -50%);
+        width:400px;
+        left:50%;
+        top:50%;
+        position:absolute;
+        overflow: hidden;
+    }
+    .outBox ul{
+        height:100%;
+        position: absolute;
+        left:0;
+        top:0;
+        transition: 1s;
+    }
+    .outBox ul li{
+        height:300px;
+        float:left;
+        width: 400px;
+        overflow: hidden;
+    }
+    .TopDiv{
+        position:relative;
+        width:100%;
+        height:300px;
+        float:left;
+        overflow:hidden;
+    }
+    .TopDiv img{
+        width:100%;
+        height:100%;
+        transform-origin: 50% 50% 0;
+        transition: 0.7s
+    }
+    .TopDiv .leftClick{
+        position:absolute;
+        left:3px;
+        top:50%;
+        z-index:3;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color:red;
+    }
+    .TopDiv .rightClick{
+        position:absolute;
+        right:3px;
+        top:50%;
+        z-index:3;
+        color:red;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+    .CenterBox{
+        width: 100%;
+        height:20px;
+        background-color: pink;
+        float:left;
+    }
+    .CenterBox .rightBox span{
+        cursor:pointer;
+        margin:10px;
+    }
+    .rightBox{
+        float:right;
+    }
+    .BottomBox{
+        float:left;
+        width: 100%;
+        height: 100px;
+        position: relative;
+    }
+    .BottomBox ul{
+        position: absolute;
+        height:100%;
+        transition: 1s;
+    }
+    .BottomBox ul li{
+        width:90px;
+        height: 90px;
+        border: 5px solid black;
+        float:left;
+        background-size:cover;
+        transition: 2s;
+    }
+    .BottomBox ul li.active{
+        border-color: yellow;
+    }
+</style>
+<body>
+    <div id="app"></div>
+    <script type="text/babel">
+        let dataJson = {
+            'Pic' : ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'],
+            'Text' : ['Pic 1', 'Pic 2', 'Pic 3', 'Pic 4', 'Pic 5', 'Pic 6']
+        };
+        class TopNode extends  React.Component{
+            render(){
+                let aLi = [];
+                console.log(this.props);
+                this.props.PicUrl.forEach((val, index)=>{
+                    aLi.push(<li key={index}><img style={{transform:'scale( ' + this.props.iScale + ')'}} src={val}/></li>)
+                });
+                return (<div className="TopDiv">
+                            <div className="leftClick" onClick={this.props.lFn}>Left</div>
+                            <div className="rightClick" onClick={this.props.rFn}>Right</div>
+                            <ul style={{width:this.props.PicUrl.length*400 + "px", left:this.props.index*-400 + "px"}}>
+                                {aLi}
+                            </ul>
+                        </div>)
+            }
+        }
+        class MiddleNode extends  React.Component {
+            render() {
+                return (<div className="CenterBox">
+                            <span>{this.props.Text[this.props.index]}</span>
+                            <div className="rightBox">
+                                <span onClick={this.props.magnify}>+</span>
+                                <span onClick={this.props.shrink}>-</span>
+                            </div>
+                        </div>)
+            }
+        }
+        class BottomNode extends  React.Component{
+            render(){
+                let aLi = [];
+                this.props.BPicUrl.forEach((val, index)=>{
+                    aLi.push(<li onClick={this.props.changeIndex.bind({}, index)} className={this.props.index==index?"active":""} key={index} style={{backgroundImage:'url(' + val +')'}}></li>)
+                });
+                return (<div className="BottomBox">
+                            <ul style={{width:this.props.BPicUrl.length*100 + "px", left:this.props.index >3? (this.props.index -3) * -100 + "px" :"0px"}}>
+                                {aLi}
+                            </ul>
+                        </div>)
+            }
+        }
+        class AdvancedTab extends React.Component{
+            constructor(){
+                super();
+                this.state={
+                    index:0,
+                    iScale:1
+                }
+            }
+            change(changeIndex){
+                console.log(changeIndex);
+                this.setState({
+                    index:changeIndex,
+                    iScale:1
+                })
+            }
+            clickleft(){
+                let needIndex = this.state.index - 1;
+                if (needIndex == -1){
+                    needIndex = this.props.dataJson.Pic.length -1 ;
+                }
+                this.setState({
+                    index:needIndex,
+                    iScale:1
+                })
+            }
+            clickright(){
+                let needIndex = this.state.index + 1;
+                if (needIndex == this.props.dataJson.Pic.length){
+                    needIndex = 0
+                }
+                this.setState({
+                    index:needIndex,
+                    iScale:1
+                })
+            }
+            magnify(){
+                let nowScale = this.state.iScale + 0.1;
+                if (nowScale >= 2){
+                    alert("Max Reaches, max=2")
+                    nowScale =2
+                }
+                this.setState({
+                    iScale: nowScale
+                });
+            }
+            shrink(){
+                let nowScale = this.state.iScale - 0.1;
+                if (nowScale <= 0.5){
+                    alert("Min Reaches, min=0.5")
+                    nowScale = 0.5
+                }
+                this.setState({
+                    iScale: nowScale
+                });
+            }
+            render() {
+                return(
+                    <div className="outBox">
+                        <TopNode PicUrl={this.props.dataJson.Pic} index={this.state.index} lFn={this.clickleft.bind(this)} rFn={this.clickright.bind(this)} iScale={this.state.iScale}/>
+                        <MiddleNode Text={this.props.dataJson.Text} index={this.state.index} magnify={this.magnify.bind(this)} shrink={this.shrink.bind(this)}/>
+                        <BottomNode BPicUrl={this.props.dataJson.Pic} index={this.state.index} changeIndex={this.change.bind(this)}/>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<AdvancedTab dataJson={dataJson}/>, app)
+    </script>
+</body>
+</html>
