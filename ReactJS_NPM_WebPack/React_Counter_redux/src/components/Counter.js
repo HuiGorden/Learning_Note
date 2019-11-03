@@ -6,8 +6,8 @@ class Counter extends React.Component {
                 <p style={{color: 'red'}}>
                     Click Time:{this.props.value}
                 </p>
-                <button onClick={this.props.add}>加一</button>
-                <button onClick={this.props.del}>减一</button>
+                <button onClick={this.props.add}>Add One</button>
+                <button onClick={this.props.del}>Minus One</button>
             </div>
         )
 
